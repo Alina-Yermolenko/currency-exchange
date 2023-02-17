@@ -18,10 +18,10 @@ export class CurrencyConverterComponent implements OnInit {
   secondCurrencyValue: any;
   secondCurrencySelect = ''
   rate: number = 0;
-  response: any;
   disabled: boolean = true;
   euroRate: number = 0;
   dollarRate: number = 0;
+  response: any;
   constructor(private service: DataService) { }
 
   async ngOnInit(): Promise<void> {
@@ -38,10 +38,6 @@ export class CurrencyConverterComponent implements OnInit {
     const response = await result.json();
     this.euroRate = +(1 / response.eur.rate).toFixed(2) ;
     this.dollarRate = +(1 / response.usd.rate).toFixed(2) ;
-    console.log(this.euroRate)
-    console.log(response)
-    // this.dollarRate = response.usd.rate;
-
   }
 
   setSelect(number: number, value: string) {
@@ -100,7 +96,7 @@ export class CurrencyConverterComponent implements OnInit {
     return;
   }
 
-  calculate(value: any) {
+  calculate(value: number) {
     if (value === 2) {
       this.secondCurrencyValue = (+this.firstCurrencyValue * this.rate).toFixed(2)
     }
@@ -108,13 +104,4 @@ export class CurrencyConverterComponent implements OnInit {
       this.firstCurrencyValue = (+this.secondCurrencyValue / this.rate).toFixed(2)
     }
   }
-
-  // calculate(reversed)
-  // if 2 select has currency
-  // if currency exists
-  // if(revsersed){
-  // calculate reverse 1/rate = newrate
-  //
-
-
 }
