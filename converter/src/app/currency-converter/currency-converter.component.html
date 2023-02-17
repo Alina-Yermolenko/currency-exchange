@@ -1,0 +1,32 @@
+<header>
+	Currency exchange to UAH:
+	<br>
+	EURO: {{euroRate}}
+	<br>
+	DOLLAR: {{dollarRate}}
+	<div>
+		
+	</div>
+</header>
+<div class="currency__block">
+	<div class="currency__sub-block">
+		<select #curr (change)="setSelect(1, curr.value)" class="select">
+			<option value="null" disabled selected>Select a currency</option>
+			<option *ngFor="let currency of listOfCurrencies" value={{currency}}>
+				{{currency}}
+			</option>
+		</select>
+		<input id="firstCurr" type="number" min="0" value={{firstCurrencyValue}} placeholder="Write a number" required
+			(change)="setValue(1, $event)" (keyup)="setValue(1, $event)" [disabled]="disabled? true : null">
+	</div>
+	<div class="currency__sub-block">
+		<select #selectedCurr (change)="setSelect(2, selectedCurr.value)" class="select">
+			<option value="null" disabled selected>Select a currency</option>
+			<option *ngFor="let selected of listOfCurrencies" value={{selected}}>
+				{{selected}}
+			</option>
+		</select>
+		<input id="secondCurr" type="number" min="0" value={{secondCurrencyValue}} placeholder="Write a number" required
+			(change)="setValue(2, $event)" (keyup)="setValue(2, $event)" [disabled]="disabled? true : null">
+	</div>
+</div>
